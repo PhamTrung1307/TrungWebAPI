@@ -1,0 +1,13 @@
+C:\Users\phamn\Desktop\HocTap\TrungWebAPI\src\Data\bin\Debug\net8.0\Data.deps.json
+C:\Users\phamn\Desktop\HocTap\TrungWebAPI\src\Data\bin\Debug\net8.0\Data.dll
+C:\Users\phamn\Desktop\HocTap\TrungWebAPI\src\Data\bin\Debug\net8.0\Data.pdb
+C:\Users\phamn\Desktop\HocTap\TrungWebAPI\src\Data\obj\Debug\net8.0\Data.csproj.AssemblyReference.cache
+C:\Users\phamn\Desktop\HocTap\TrungWebAPI\src\Data\obj\Debug\net8.0\Data.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\phamn\Desktop\HocTap\TrungWebAPI\src\Data\obj\Debug\net8.0\Data.AssemblyInfoInputs.cache
+C:\Users\phamn\Desktop\HocTap\TrungWebAPI\src\Data\obj\Debug\net8.0\Data.AssemblyInfo.cs
+C:\Users\phamn\Desktop\HocTap\TrungWebAPI\src\Data\obj\Debug\net8.0\Data.csproj.CoreCompileInputs.cache
+C:\Users\phamn\Desktop\HocTap\TrungWebAPI\src\Data\obj\Debug\net8.0\Data.sourcelink.json
+C:\Users\phamn\Desktop\HocTap\TrungWebAPI\src\Data\obj\Debug\net8.0\Data.dll
+C:\Users\phamn\Desktop\HocTap\TrungWebAPI\src\Data\obj\Debug\net8.0\refint\Data.dll
+C:\Users\phamn\Desktop\HocTap\TrungWebAPI\src\Data\obj\Debug\net8.0\Data.pdb
+C:\Users\phamn\Desktop\HocTap\TrungWebAPI\src\Data\obj\Debug\net8.0\ref\Data.dll
