@@ -1,8 +1,8 @@
 using API;
-using Core.Domain.Content;
+using API.Services;
+using Core.ConfigOptions;
 using Core.Domain.Identity;
 using Core.Models.Content;
-using Core.Repositories;
 using Core.SeedWorks;
 using Data;
 using Data.Repositories;
@@ -15,6 +15,14 @@ using System.Reflection;
 var builder = WebApplication.CreateBuilder(args);
 var configuration = builder.Configuration;
 var connectionString = configuration.GetConnectionString("DefaultConnection");
+var crosPolicy = "CorsPolicy";
+builder.Services.AddCors(o => o.AddPolicy(crosPolicy, builder =>
+{
+    builder.AllowAnyHeader()
+           .AllowAnyMethod()
+           .WithOrigins(configuration["AllowedOrigins"])
+           .AllowCredentials();
+}));
 
 // Add DbContext and indentity
 builder.Services.AddDbContext<IDbContext>(options =>
@@ -45,6 +53,13 @@ foreach (var service in services)
 }
 
 builder.Services.AddAutoMapper(typeof(PostInListDTO));
+
+//authentication and authorization
+builder.Services.Configure<JwtTokenSettings>(configuration.GetSection("JwtTokenSettings"));
+builder.Services.AddScoped<UserManager<AppUser>, UserManager<AppUser>>();
+builder.Services.AddScoped<SignInManager<AppUser>, SignInManager<AppUser>>();
+builder.Services.AddScoped<ITokenService, TokenService>();
+builder.Services.AddScoped<RoleManager<AppRole>, RoleManager<AppRole>>();
 
 builder.Services.AddControllers();
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
@@ -77,6 +92,7 @@ if (app.Environment.IsDevelopment())
     });
 }
 
+app.UseCors(crosPolicy);
 app.UseHttpsRedirection();
 
 app.UseAuthorization();

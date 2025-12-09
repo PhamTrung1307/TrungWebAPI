@@ -43,3 +43,5 @@ C:\Users\phamn\Desktop\HocTap\TrungWebAPI\src\WebApp\obj\Debug\net8.0\refint\Web
 C:\Users\phamn\Desktop\HocTap\TrungWebAPI\src\WebApp\obj\Debug\net8.0\WebApp.pdb
 C:\Users\phamn\Desktop\HocTap\TrungWebAPI\src\WebApp\obj\Debug\net8.0\WebApp.genruntimeconfig.cache
 C:\Users\phamn\Desktop\HocTap\TrungWebAPI\src\WebApp\obj\Debug\net8.0\ref\WebApp.dll
+C:\Users\phamn\Desktop\HocTap\TrungWebAPI\src\WebApp\bin\Debug\net8.0\AutoMapper.dll
+C:\Users\phamn\Desktop\HocTap\TrungWebAPI\src\WebApp\bin\Debug\net8.0\AutoMapper.Extensions.Microsoft.DependencyInjection.dll
