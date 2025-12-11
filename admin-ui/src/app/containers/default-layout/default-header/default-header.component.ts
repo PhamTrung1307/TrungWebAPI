@@ -3,8 +3,8 @@ import { FormControl, FormGroup } from '@angular/forms';
 import { Router } from '@angular/router';
 
 import { ClassToggleService, HeaderComponent } from '@coreui/angular';
-import { UrlConstants } from 'src/app/shared/contants/url.constants';
 import { TokenStorageService } from 'src/app/shared/services/token-storage.service';
+import { UrlConstants } from 'src/app/shared/contants/url.constants';
 
 @Component({
   selector: 'app-default-header',

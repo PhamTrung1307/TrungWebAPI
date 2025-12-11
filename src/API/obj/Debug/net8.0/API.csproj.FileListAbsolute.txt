@@ -93,3 +93,4 @@ C:\Users\phamn\Desktop\HocTap\TrungWebAPI\src\API\bin\Debug\net8.0\Core.pdb
 C:\Users\phamn\Desktop\HocTap\TrungWebAPI\src\API\bin\Debug\net8.0\Data.pdb
 C:\Users\phamn\Desktop\HocTap\TrungWebAPI\src\API\bin\Debug\net8.0\AutoMapper.dll
 C:\Users\phamn\Desktop\HocTap\TrungWebAPI\src\API\bin\Debug\net8.0\AutoMapper.Extensions.Microsoft.DependencyInjection.dll
+C:\Users\phamn\Desktop\HocTap\TrungWebAPI\src\API\bin\Debug\net8.0\Microsoft.AspNetCore.Authentication.JwtBearer.dll
