@@ -19,9 +19,9 @@ namespace Core.Models.Content
 
         public DateTime? DateModified { get; set; }
 
-        public class AutomapperProfile : Profile
+        public class AutoMapperProfiles : Profile
         {
-            public AutomapperProfile()
+            public AutoMapperProfiles()
             {
                 CreateMap<Post, PostDTO>();
             }

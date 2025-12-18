@@ -13,7 +13,6 @@ import { SharedModule } from 'primeng/api';
 import { TableModule } from 'primeng/table';
 import { ButtonModule } from 'primeng/button';
 import { InputTextModule } from 'primeng/inputtext';
-// import { TeduSharedModule } from 'src/app/shared/modules/tedu-shared.module';
 import { KeyFilterModule } from 'primeng/keyfilter';
 // import { PermissionGrantComponent } from './roles/permission-grant.component';
 // import { ChangeEmailComponent } from './users/change-email.component';
@@ -23,7 +22,13 @@ import { KeyFilterModule } from 'primeng/keyfilter';
 import { BadgeModule } from 'primeng/badge';
 import { PickListModule } from 'primeng/picklist';
 import { ImageModule } from 'primeng/image';
-// import { RolesDetailComponent } from './roles/roles-detail.component';
+import { TblogSharedModule } from '../../shared/modules/trungblog-shared.module';
+import { RoleDetailComponent } from './roles/role-detail.component';
+import { PermissionGrantComponent } from './roles/permission-grant.component';
+import { ChangeEmailComponent } from './users/change-email.component';
+import { SetPasswordComponent } from './users/set-password.component';
+import { RoleAssignComponent } from './users/role-assign.component';
+import { UserDetailComponent } from './users/user-detail.component';
 
 @NgModule({
   imports: [
@@ -38,17 +43,22 @@ import { ImageModule } from 'primeng/image';
     CheckboxModule,
     ButtonModule,
     InputTextModule,
-    SharedModule
+    TblogSharedModule,
+    KeyFilterModule,
+    SharedModule,
+    BadgeModule,
+    PickListModule,
+    ImageModule
   ],
   declarations: [
     UserComponent,
     RoleComponent,
-    //RolesDetailComponent,
-    // PermissionGrantComponent,
-    // ChangeEmailComponent,
-    // RoleAssignComponent,
-    // SetPasswordComponent,
-    // UserDetailComponent
+    RoleDetailComponent,
+    PermissionGrantComponent,
+    ChangeEmailComponent,
+    RoleAssignComponent,
+    SetPasswordComponent,
+    UserDetailComponent
   ],
 })
 export class SystemModule {}

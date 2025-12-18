@@ -1,11 +1,6 @@
 ﻿using AutoMapper;
 using Core.Domain.Content;
-using System;
-using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Core.Models.Content
 {
@@ -25,7 +20,7 @@ namespace Core.Models.Content
 
         public string? Source { get; set; }
 
-        public string[] Tags { get; set; }
+        public string? Tags { get; set; }
 
         public string? SeoDescription { get; set; }
         public class AutoMapperProfiles : Profile

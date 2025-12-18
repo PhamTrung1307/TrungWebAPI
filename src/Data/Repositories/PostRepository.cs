@@ -1,9 +1,12 @@
 ﻿using AutoMapper;
 using Core.Domain.Content;
+using Core.Domain.Identity;
 using Core.Models;
 using Core.Models.Content;
 using Core.Repositories;
+using Core.SeedWorks.Constants;
 using Data.SeedWorks;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 
 namespace Data.Repositories
@@ -11,33 +14,52 @@ namespace Data.Repositories
     public class PostRepository : RepositoryBase<Post, Guid>, IPostRepository
     {
         private readonly IMapper _mapper;
-        public PostRepository(IDbContext context, IMapper mapper) : base(context)
+        private readonly UserManager<AppUser> _userManager;
+        public PostRepository(IDbContext context, IMapper mapper, UserManager<AppUser> userManager) : base(context)
         {
             _mapper = mapper;
+            _userManager = userManager; 
         }
-
-        public Task<List<Post>> GetPopularPostsAsync(int count)
+        public async Task<PageResult<PostInListDTO>> GetAllPaging(string? keyword, Guid currentUserId, Guid? categoryId, int pageIndex = 1, int pageSize = 10)
         {
-            return _context.Set<Post>().OrderByDescending(p => p.ViewCount).Take(count).ToListAsync();
-        }
-
-        public async Task<PageResult<PostInListDTO>> GetPagedPostsAsync(string key, Guid? categoryId, int pageIndex = 1, int pageSize = 10)
-        {
-            var query = _context.Posts.AsQueryable();
-            if (!string.IsNullOrWhiteSpace(key))
+            var user = await _userManager.FindByIdAsync(currentUserId.ToString());
+            if (user == null)
             {
-                query = query.Where(p => p.Name.Contains(key) || p.Description!.Contains(key));
+                throw new Exception("Không tồn tại user");
+            }
+            var roles = await _userManager.GetRolesAsync(user);
+            var canApprove = false;
+            if (roles.Contains(Roles.Admin))
+            {
+                canApprove = true;
+            }
+            else
+            {
+                canApprove = await _context.RoleClaims.AnyAsync(x => roles.Contains(x.RoleId.ToString())
+                           && x.ClaimValue == Permissions.Posts.Approve);
+            }
+
+            var query = _context.Posts.AsQueryable();
+            if (!string.IsNullOrWhiteSpace(keyword))
+            {
+                query = query.Where(x => x.Name.Contains(keyword));
             }
             if (categoryId.HasValue)
             {
-                query = query.Where(p => p.CategoryID == categoryId);
+                query = query.Where(x => x.CategoryID == categoryId.Value);
+            }
+
+            if (!canApprove)
+            {
+                query = query.Where(x => x.AuthorUserID == currentUserId);
             }
 
             var totalRow = await query.CountAsync();
-            query = query.OrderByDescending(p => p.DateCreated)
-                         .Skip((pageIndex - 1) * pageSize)
-                         .Take(pageSize);
-            
+
+            query = query.OrderByDescending(x => x.DateCreated)
+               .Skip((pageIndex - 1) * pageSize)
+               .Take(pageSize);
+
             return new PageResult<PostInListDTO>
             {
                 Results = await _mapper.ProjectTo<PostInListDTO>(query).ToListAsync(),
@@ -45,6 +67,133 @@ namespace Data.Repositories
                 RowCount = totalRow,
                 PageSize = pageSize
             };
+
+        }
+
+        public async Task<List<SeriesInListDTO>> GetAllSeries(Guid postId)
+        {
+            var query = from pis in _context.PostInSeries
+                        join s in _context.Series
+                        on pis.SeriesId equals s.Id
+                        where pis.PostId == postId
+                        select s;
+            return await _mapper.ProjectTo<SeriesInListDTO>(query).ToListAsync();
+        }
+
+        public IEnumerable<Post> GetPopularPosts(int count)
+        {
+            return _context.Posts.OrderByDescending(d => d.ViewCount).Take(count).ToList();
+        }
+
+        public Task<bool> IsSlugAlreadyExisted(string slug, Guid? currentId = null)
+        {
+            if (currentId.HasValue)
+            {
+                return _context.Posts.AnyAsync(x => x.Slug == slug && x.Id != currentId.Value);
+            }
+            return _context.Posts.AnyAsync(x => x.Slug == slug);
+        }
+        public async Task Approve(Guid id, Guid currentUserId)
+        {
+            var post = await _context.Posts.FindAsync(id);
+            if (post == null)
+            {
+                throw new Exception("Không tồn tại bài viết");
+            }
+            var user = await _context.Users.FindAsync(currentUserId);
+            await _context.PostActivityLogs.AddAsync(new PostActivityLog
+            {
+                Id = Guid.NewGuid(),
+                FromStatus = post.Status,
+                ToStatus = PostStatus.published,
+                UserId = currentUserId,
+                UserName = user.UserName,
+                PostId = id,
+                Note = $"{user?.UserName} duyệt bài"
+            });
+            post.Status = PostStatus.published;
+            _context.Posts.Update(post);
+        }
+
+        public async Task ReturnBack(Guid id, Guid currentUserId, string note)
+        {
+            var post = await _context.Posts.FindAsync(id);
+            if (post == null)
+            {
+                throw new Exception("Không tồn tại bài viết");
+            }
+
+            var user = await _userManager.FindByIdAsync(currentUserId.ToString());
+            await _context.PostActivityLogs.AddAsync(new PostActivityLog
+            {
+                FromStatus = post.Status,
+                ToStatus = PostStatus.rejected,
+                UserId = currentUserId,
+                UserName = user.UserName,
+                PostId = post.Id,
+                Note = note
+            });
+
+            post.Status = PostStatus.rejected;
+            _context.Posts.Update(post);
+        }
+
+        public async Task<string> GetReturnReason(Guid id)
+        {
+            var activity = await _context.PostActivityLogs
+                .Where(x => x.PostId == id && x.ToStatus == PostStatus.rejected)
+                .OrderByDescending(x => x.DateCreated)
+                .FirstOrDefaultAsync();
+            return activity?.Note;
+        }
+
+        public async Task<bool> HasPublishInLast(Guid id)
+        {
+            var hasPublished =
+                await _context.PostActivityLogs.CountAsync(x => x.PostId == id
+                && x.ToStatus == PostStatus.published);
+            return hasPublished > 0;
+        }
+
+        public async Task<List<PostActivityLogDTO>> GetActivityLogs(Guid id)
+        {
+            var query = _context.PostActivityLogs.Where(x => x.PostId == id)
+                .OrderByDescending(x => x.DateCreated);
+            return await _mapper.ProjectTo<PostActivityLogDTO>(query).ToListAsync();
+        }
+
+        public async Task SendToApprove(Guid id, Guid currentUserId)
+        {
+            var post = await _context.Posts.FindAsync(id);
+            if (post == null)
+            {
+                throw new Exception("Không tồn tại bài viết");
+            }
+            var user = await _userManager.FindByIdAsync(currentUserId.ToString());
+            if (user == null)
+            {
+                throw new Exception("Không tồn tại user");
+            }
+            await _context.PostActivityLogs.AddAsync(new PostActivityLog
+            {
+                FromStatus = post.Status,
+                ToStatus = PostStatus.waitingForApproval,
+                UserId = currentUserId,
+                PostId = post.Id,
+                UserName = user.UserName,
+                Note = $"{user.UserName} gửi bài chờ duyệt"
+            });
+
+            post.Status = PostStatus.waitingForApproval;
+            _context.Posts.Update(post);
+        }
+
+        public async Task<List<Post>> GetListUnpaidPublishPosts(Guid userId)
+        {
+            return await _context.Posts
+               .Where(x => x.AuthorUserID == userId && x.IsPaid == false
+                       && x.Status == PostStatus.published)
+               .ToListAsync();
         }
     }
 }

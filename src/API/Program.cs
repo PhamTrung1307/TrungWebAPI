@@ -5,9 +5,11 @@ using Core.ConfigOptions;
 using Core.Domain.Identity;
 using Core.Models.Content;
 using Core.SeedWorks;
+using Core.Services;
 using Data;
 using Data.Repositories;
 using Data.SeedWorks;
+using Data.Services;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
@@ -43,6 +45,26 @@ builder.Services.AddIdentity<AppUser, AppRole>(option => option.SignIn.RequireCo
 builder.Services.AddScoped(typeof(IRepository<,>), typeof(RepositoryBase<,>));
 builder.Services.AddScoped<IUnitOfWork, UnitOfWork>();
 
+builder.Services.Configure<IdentityOptions>(options =>
+{
+    // Password settings.
+    options.Password.RequireDigit = true;
+    options.Password.RequireLowercase = true;
+    options.Password.RequireNonAlphanumeric = true;
+    options.Password.RequireUppercase = true;
+    options.Password.RequiredLength = 6;
+    options.Password.RequiredUniqueChars = 1;
+
+    // Lockout settings.
+    options.Lockout.DefaultLockoutTimeSpan = TimeSpan.FromMinutes(5);
+    options.Lockout.MaxFailedAccessAttempts = 5;
+    options.Lockout.AllowedForNewUsers = false;
+
+    // User settings.
+    options.User.AllowedUserNameCharacters =
+    "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789-._@+";
+    options.User.RequireUniqueEmail = true;
+});
 
 //business services and repositories 
 //builder.Services.AddScoped<IPostRepository, PostRepository>();
@@ -62,12 +84,15 @@ foreach (var service in services)
 
 builder.Services.AddAutoMapper(typeof(PostInListDTO));
 
-//authentication and authorization
 builder.Services.Configure<JwtTokenSettings>(configuration.GetSection("JwtTokenSettings"));
+builder.Services.Configure<MediaSettings>(configuration.GetSection("MediaSettings"));
+
+//authentication and authorization
 builder.Services.AddScoped<UserManager<AppUser>, UserManager<AppUser>>();
 builder.Services.AddScoped<SignInManager<AppUser>, SignInManager<AppUser>>();
 builder.Services.AddScoped<ITokenService, TokenService>();
 builder.Services.AddScoped<RoleManager<AppRole>, RoleManager<AppRole>>();
+builder.Services.AddScoped<IRoyaltyService, RoyaltyService>();
 
 builder.Services.AddControllers();
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
@@ -116,6 +141,8 @@ if (app.Environment.IsDevelopment())
         c.DisplayRequestDuration();
     });
 }
+
+app.UseStaticFiles();
 
 app.UseCors(crosPolicy);
 app.UseHttpsRedirection();

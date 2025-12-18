@@ -1,5 +1,7 @@
 ﻿using Core.Domain.Content;
 using Core.Domain.Identity;
+using Core.Domain.Royalty;
+using Core.SeedWorks.Constants;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
@@ -13,12 +15,13 @@ namespace Data
 
         }
         public DbSet<Post> Posts { get; set; }
-        public DbSet<PostActivityLog> PostImages { get; set; }
-        public DbSet<PostCategory> Categories { get; set; }
-        public DbSet<PostInSeries> PostInSeries { get; set; }
-        public DbSet<PostTag> PostTag { get; set; }
-        public DbSet<Series> Series { get; set; }
+        public DbSet<PostCategory> PostCategories { get; set; }
+        public DbSet<PostTag> PostTags { get; set; }
         public DbSet<Tag> Tags { get; set; }
+        public DbSet<PostActivityLog> PostActivityLogs { get; set; }
+        public DbSet<Series> Series { get; set; }
+        public DbSet<PostInSeries> PostInSeries { get; set; }
+        public DbSet<Transaction> Transactions { get; set; }
 
         protected override void OnModelCreating(ModelBuilder builder)
         {
@@ -36,21 +39,15 @@ namespace Data
         {
             var entries = ChangeTracker
                .Entries()
-               .Where(e => e.State == EntityState.Added|| e.State == EntityState.Modified);
+               .Where(e => e.State == EntityState.Added);
 
             foreach (var entityEntry in entries)
             {
-                var dateCreatedProp = entityEntry.Entity.GetType().GetProperty("DateCreated");
+                var dateCreatedProp = entityEntry.Entity.GetType().GetProperty(SystemConsts.DateCreatedField);
                 if (entityEntry.State == EntityState.Added
                     && dateCreatedProp != null)
                 {
                     dateCreatedProp.SetValue(entityEntry.Entity, DateTime.Now);
-                }
-                var modifiedDateProp = entityEntry.Entity.GetType().GetProperty("ModifiedDate");
-                if (entityEntry.State == EntityState.Modified
-                    && modifiedDateProp != null)
-                {
-                    modifiedDateProp.SetValue(entityEntry.Entity, DateTime.Now);
                 }
             }
             return base.SaveChangesAsync(cancellationToken);

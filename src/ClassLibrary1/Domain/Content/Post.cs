@@ -36,14 +36,27 @@ namespace Core.Domain.Content
         public PostStatus Status { get; set; }
         public DateTime DateCreated { get; set; }
         public DateTime DateModified { get; set; }
+
+        [Required]
+        [Column(TypeName = "varchar(250)")]
+        public required string CategorySlug { set; get; }
+
+        [MaxLength(250)]
+        [Required]
+        public required string CategoryName { set; get; }
+        [MaxLength(250)]
+        public string AuthorUserName { set; get; }
+        [MaxLength(250)]
+        public string AuthorName { set; get; }
+
+        public DateTime? PaidDate { get; set; }
     }
     public enum PostStatus
     {
-        Draft =1,
-        cancelled=2,
-        waitingForApproval=3,
-        rejected=4,
-        waitingForPublish=5,
-        published = 6
+        Draft =0,
+        waitingForApproval=1,
+        rejected=2,
+        published = 3
+
     }
 }

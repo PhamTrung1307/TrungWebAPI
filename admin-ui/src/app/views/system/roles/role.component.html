@@ -2,11 +2,11 @@
   <p-header> Quản lý quyền </p-header>
   <div class="row">
     <div class="col">
-      <button appPermission appPolicy="Permissons.Roles.Create" pButton type="button" label="Thêm" icon="fa fa-plus"
+      <button appPermission appPolicy="Permissions.Roles.Create" pButton type="button" label="Thêm" icon="fa fa-plus"
         (click)="showAddModal()" class="p-button-sm p-button-success ms-1"></button>
-      <button appPermission appPolicy="Permissons.Roles.Delete" pButton type="button" label="Xóa" icon="fa fa-trash"
+      <button appPermission appPolicy="Permissions.Roles.Delete" pButton type="button" label="Xóa" icon="fa fa-trash"
         *ngIf="selectedItems.length > 0" (click)="deleteItems()" class="p-button-sm p-button-danger ms-1"></button>
-      <button appPermission appPolicy="Permissons.Roles.Edit" pButton type="button" label="Sửa" icon="fa fa-edit"
+      <button appPermission appPolicy="Permissions.Roles.Edit" pButton type="button" label="Sửa" icon="fa fa-edit"
         *ngIf="selectedItems.length == 1" (click)="showEditModal()"
         class="p-button-sm p-button-warning ms-1"></button>
     </div>
