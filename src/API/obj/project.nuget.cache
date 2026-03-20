@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "6L1Lw4R+nAU=",
+  "dgSpecHash": "70U1LtCi0FU=",
   "success": true,
-  "projectFilePath": "C:\\Users\\phamn\\Desktop\\HocTap\\TrungWebAPI\\src\\API\\API.csproj",
+  "projectFilePath": "C:\\Users\\phamn\\OneDrive\\Desktop\\HocTap\\TrungWebAPI\\src\\API\\API.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\phamn\\.nuget\\packages\\automapper\\12.0.1\\automapper.12.0.1.nupkg.sha512",
     "C:\\Users\\phamn\\.nuget\\packages\\automapper.extensions.microsoft.dependencyinjection\\12.0.1\\automapper.extensions.microsoft.dependencyinjection.12.0.1.nupkg.sha512",

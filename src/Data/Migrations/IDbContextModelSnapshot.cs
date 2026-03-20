@@ -111,7 +111,7 @@ namespace Data.Migrations
                     b.HasIndex("Slug")
                         .IsUnique();
 
-                    b.ToTable("Posts");
+                    b.ToTable("Posts", (string)null);
                 });
 
             modelBuilder.Entity("Core.Domain.Content.PostActivityLog", b =>
@@ -145,7 +145,7 @@ namespace Data.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("PostActivityLogs");
+                    b.ToTable("PostActivityLogs", (string)null);
                 });
 
             modelBuilder.Entity("Core.Domain.Content.PostCategory", b =>
@@ -187,7 +187,7 @@ namespace Data.Migrations
                     b.HasIndex("Slug")
                         .IsUnique();
 
-                    b.ToTable("PostCategories");
+                    b.ToTable("PostCategories", (string)null);
                 });
 
             modelBuilder.Entity("Core.Domain.Content.PostInSeries", b =>
@@ -203,7 +203,7 @@ namespace Data.Migrations
 
                     b.HasKey("PostId", "SeriesId");
 
-                    b.ToTable("PostInSeries");
+                    b.ToTable("PostInSeries", (string)null);
                 });
 
             modelBuilder.Entity("Core.Domain.Content.PostTag", b =>
@@ -216,7 +216,7 @@ namespace Data.Migrations
 
                     b.HasKey("PostId", "TagId");
 
-                    b.ToTable("PostTags");
+                    b.ToTable("PostTags", (string)null);
                 });
 
             modelBuilder.Entity("Core.Domain.Content.Series", b =>
@@ -266,7 +266,7 @@ namespace Data.Migrations
                     b.HasIndex("Slug")
                         .IsUnique();
 
-                    b.ToTable("Series");
+                    b.ToTable("Series", (string)null);
                 });
 
             modelBuilder.Entity("Core.Domain.Content.Tag", b =>
@@ -287,7 +287,7 @@ namespace Data.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Tags");
+                    b.ToTable("Tags", (string)null);
                 });
 
             modelBuilder.Entity("Core.Domain.Identity.AppRole", b =>
@@ -312,7 +312,7 @@ namespace Data.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("AppRoles");
+                    b.ToTable("AppRoles", (string)null);
                 });
 
             modelBuilder.Entity("Core.Domain.Identity.AppUser", b =>
@@ -409,7 +409,7 @@ namespace Data.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("AppUsers");
+                    b.ToTable("AppUsers", (string)null);
                 });
 
             modelBuilder.Entity("Core.Domain.Royalty.Transaction", b =>
@@ -449,7 +449,7 @@ namespace Data.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Transactions");
+                    b.ToTable("Transactions", (string)null);
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<System.Guid>", b =>

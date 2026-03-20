@@ -6,6 +6,12 @@ import { UtilityService } from '../../../shared/services/utility.service';
 import { AdminApiPostApiClient, AdminApiPostCategoryApiClient, PostCategoryDTO, PostDTO }  from '../../../api/admin-api.service.generated';
 import { UploadService } from '../../../shared/services/upload.service';
 import { environment } from '../../../../environments/environment'; 
+
+interface AutoCompleteCompleteEvent {
+    originalEvent: Event;
+    query: string;
+}
+
 @Component({
   templateUrl: 'post-detail.component.html',
 })
@@ -22,10 +28,15 @@ export class PostDetailComponent implements OnInit, OnDestroy {
   public contentTypes: any[] = [];
   public series: any[] = [];
 
-  selectedEntity = {} as PostDTO;
-  public thumbnailImage;
+  tags: string[] | undefined;
+  filteredTags: string[] | undefined;
+  postTags!: string[];
 
   formSavedEventEmitter: EventEmitter<any> = new EventEmitter();
+
+  selectedEntity = {} as PostDTO;
+  public thumbnailImage: string = '';
+
 
   constructor(
     public ref: DynamicDialogRef,
@@ -60,32 +71,48 @@ export class PostDetailComponent implements OnInit, OnDestroy {
     description: [{ type: 'required', message: 'Bạn phải nhập mô tả ngắn' }],
   };
 
-ngOnInit() {
-  this.buildForm();
+ ngOnInit() {
+    //Init form
+    this.buildForm();
+    //Load data to form
+    var categories = this.postCategoryApiClient.getPostCategories();
+    var tags = this.postApiClient.getAllTags();
+    this.toggleBlockUI(true);
+    forkJoin({
+      categories,
+      tags,
+    })
+      .pipe(takeUntil(this.ngUnsubscribe))
+      .subscribe({
+        next: (repsonse: any) => {
+          //Push categories to dropdown list
+          this.tags = repsonse.tags as string[];
 
-  const categories = this.postCategoryApiClient.getPostCategories();
-
-  this.toggleBlockUI(true);
-  forkJoin({ categories })
-    .pipe(takeUntil(this.ngUnsubscribe))
-    .subscribe({
-      next: (response: any) => {
-        response.categories.forEach(element => {
-          this.postCategories.push({
-            value: element.id,
-            label: element.name,
+          var categories = repsonse.categories as PostCategoryDTO[];
+          categories.forEach((element) => {
+            this.postCategories.push({
+              value: element.id,
+              label: element.name,
+            });
           });
-        });
+          if (this.utilService.isEmpty(this.config.data?.id) == false) {
+            this.postApiClient
+              .getPostTags(this.config.data.id)
+              .subscribe((res) => {
+                this.postTags = res;
+                this.loadFormDetails(this.config.data?.id);
+              });
 
-        if (this.config.data?.id) {
-          this.loadFormDetails(this.config.data.id);
-        } else {
+            
+          } else {
+            this.toggleBlockUI(false);
+          }
+        },
+        error: () => {
           this.toggleBlockUI(false);
-        }
-      },
-      error: () => this.toggleBlockUI(false)
-    });
-}
+        },
+      });
+  }
 
 loadFormDetails(id: string) {
   this.postApiClient.getPostById(id)
@@ -178,17 +205,53 @@ loadFormDetails(id: string) {
       }, 1000);
     }
   }
-buildForm() {
-  this.form = this.fb.group({
-    name: [null, [Validators.required, Validators.maxLength(255), Validators.minLength(3)]],
-    slug: [null, Validators.required],
-    categoryId: [null, Validators.required],
-    description: [null, Validators.required],
-    seoDescription: [null],
-    tags: [null],
-    content: [null],
-    thumbnail: [null],
-  });
-}
+  buildForm() {
+    this.form = this.fb.group({
+      name: new FormControl(
+        this.selectedEntity.name || null,
+        Validators.compose([
+          Validators.required,
+          Validators.maxLength(255),
+          Validators.minLength(3),
+        ])
+      ),
+      slug: new FormControl(
+        this.selectedEntity.slug || null,
+        Validators.required
+      ),
+      categoryId: new FormControl(
+        this.selectedEntity.categoryId || null,
+        Validators.required
+      ),
+      description: new FormControl(
+        this.selectedEntity.description || null,
+        Validators.required
+      ),
+      seoDescription: new FormControl(
+        this.selectedEntity.seoDescription || null
+      ),
+      content: new FormControl(this.selectedEntity.content || null),
+      thumbnail: new FormControl(this.selectedEntity.thumbnail || null),
+      tags: new FormControl(this.postTags),
+    });
+    if (this.selectedEntity.thumbnail) {
+      this.thumbnailImage = environment.API_URL + this.selectedEntity.thumbnail;
+    }
+  }
 
+ filterTag(event: AutoCompleteCompleteEvent) {
+    let filtered: string[] = [];
+    let query = event.query;
+
+    for (let i = 0; i < (this.tags as string[]).length; i++) {
+      let tag = (this.tags as string[])[i];
+      if (tag.toLowerCase().indexOf(query.toLowerCase()) == 0) {
+        filtered.push(tag);
+      }
+    }
+    if (filtered.length == 0) {
+      filtered.push(query);
+    }
+    this.filteredTags = filtered;
+  }
 }

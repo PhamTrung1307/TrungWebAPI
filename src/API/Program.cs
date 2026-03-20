@@ -1,5 +1,6 @@
-using API;
+﻿using API;
 using API.Authorization;
+using API.Filters;
 using API.Services;
 using Core.ConfigOptions;
 using Core.Domain.Identity;
@@ -20,6 +21,9 @@ using System.Reflection;
 using System.Text;
 
 var builder = WebApplication.CreateBuilder(args);
+builder.Configuration.AddJsonFile("appsettings.json", optional: true, reloadOnChange: true)
+                      .AddJsonFile($"appsettings.{builder.Environment.EnvironmentName}.json", optional: true);
+
 var configuration = builder.Configuration;
 var connectionString = configuration.GetConnectionString("DefaultConnection");
 var crosPolicy = "CorsPolicy";
@@ -103,29 +107,63 @@ builder.Services.AddSwaggerGen(c =>
     {
         return apiDesc.TryGetMethodInfo(out MethodInfo methodInfo) ? methodInfo.Name : null;
     });
+
     c.SwaggerDoc("AdminAPI", new Microsoft.OpenApi.Models.OpenApiInfo
     {
         Version = "v1",
         Title = "API for Administrators",
-        Description = "API for CMS core domain. This domain keeps track of campaigns, campaign rules, and campaign execution."
+        Description = "API for CMS core domain."
     });
-    //c.ParameterFilter<SwaggerNullableParameterFilter>();
+
+    c.ParameterFilter<SwaggerNullableParameterFilter>();
+
+    c.AddSecurityDefinition("Bearer", new Microsoft.OpenApi.Models.OpenApiSecurityScheme
+    {
+        Name = "Authorization",
+        Type = Microsoft.OpenApi.Models.SecuritySchemeType.Http,
+        Scheme = "Bearer",
+        BearerFormat = "JWT",
+        In = Microsoft.OpenApi.Models.ParameterLocation.Header,
+        Description = "Nhập JWT theo dạng: Bearer {token}"
+    });
+
+    c.AddSecurityRequirement(new Microsoft.OpenApi.Models.OpenApiSecurityRequirement
+    {
+        {
+            new Microsoft.OpenApi.Models.OpenApiSecurityScheme
+            {
+                Reference = new Microsoft.OpenApi.Models.OpenApiReference
+                {
+                    Type = Microsoft.OpenApi.Models.ReferenceType.SecurityScheme,
+                    Id = "Bearer"
+                }
+            },
+            Array.Empty<string>()
+        }
+    });
 });
 
-builder.Services.AddAuthentication(o =>
-{
-    o.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;
-    o.DefaultChallengeScheme = JwtBearerDefaults.AuthenticationScheme;
-}).AddJwtBearer(cfg =>
+builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
+.AddJwtBearer(cfg =>
 {
     cfg.RequireHttpsMetadata = false;
     cfg.SaveToken = true;
 
     cfg.TokenValidationParameters = new TokenValidationParameters
     {
+        ValidateIssuer = true,
+        ValidateAudience = true,
+        ValidateLifetime = true,
+        ValidateIssuerSigningKey = true,
+
         ValidIssuer = configuration["JwtTokenSettings:Issuer"],
-        ValidAudience = configuration["JwtTokenSettings:Issuer"],
-        IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(configuration["JwtTokenSettings:Key"]))
+        ValidAudience = configuration["JwtTokenSettings:Audience"],
+
+        IssuerSigningKey = new SymmetricSecurityKey(
+            Encoding.UTF8.GetBytes(configuration["JwtTokenSettings:Key"])
+        ),
+
+        ClockSkew = TimeSpan.Zero
     };
 });
 var app = builder.Build();

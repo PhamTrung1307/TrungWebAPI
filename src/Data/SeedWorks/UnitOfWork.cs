@@ -5,7 +5,6 @@ using Core.SeedWorks;
 using Data.Repositories;
 using Microsoft.AspNetCore.Identity;
 using TeduBlog.Data.Repositories;
-using static Core.SeedWorks.Constants.Permissions;
 
 namespace Data.SeedWorks
 {
@@ -19,6 +18,7 @@ namespace Data.SeedWorks
             PostCategories = new PostCategoryRepository(context, mapper);
             Series = new SeriesRepository(context, mapper);
             Transactions = new TransactionRepository(_context, mapper);
+            Tags = new TagRepository(context, mapper); 
             Users = new UserRepository(context);
         }
 
@@ -30,6 +30,7 @@ namespace Data.SeedWorks
 
         public ITransactionRepository Transactions { get; private set; }
         public IUserRepository Users { get; private set; }
+        public ITagRepository Tags { get; private set; }
 
         public async Task<int> CompleteAsync()
         {

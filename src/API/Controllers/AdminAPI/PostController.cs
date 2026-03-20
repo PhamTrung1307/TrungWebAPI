@@ -2,6 +2,7 @@
 using AutoMapper;
 using Core.Domain.Content;
 using Core.Domain.Identity;
+using Core.Helper;
 using Core.Models;
 using Core.Models.Content;
 using Core.SeedWorks;
@@ -25,7 +26,6 @@ namespace API.Controllers.AdminAPI
             _mapper = mapper;
             _userManager = userManager;
         }
-
         [HttpPost]
         [Authorize(Posts.Create)]
         public async Task<IActionResult> CreatePost([FromBody] CreateUpdatePostRequest request)
@@ -35,7 +35,9 @@ namespace API.Controllers.AdminAPI
                 return BadRequest("Đã tồn tại slug");
             }
             var post = _mapper.Map<CreateUpdatePostRequest, Post>(request);
+            var postId = Guid.NewGuid();
             var category = await _unitOfWork.PostCategories.GetByIdAsync(request.CategoryId);
+            post.Id = postId;
             post.CategoryName = category.Name;
             post.CategorySlug = category.Slug;
 
@@ -43,8 +45,30 @@ namespace API.Controllers.AdminAPI
             var user = await _userManager.FindByIdAsync(userId.ToString());
             post.AuthorUserID = userId;
             post.AuthorName = user.GetFullName();
-            post.AuthorUserName = user.UserName!;
+            post.AuthorUserName = user.UserName;
             _unitOfWork.Posts.Add(post);
+
+            //Process tag
+            if (request.Tags != null && request.Tags.Length > 0)
+            {
+                foreach (var tagName in request.Tags)
+                {
+                    var tagSlug = TextHelper.ToUnsignedString(tagName);
+                    var tag = await _unitOfWork.Tags.GetBySlug(tagSlug);
+                    Guid tagId;
+                    if (tag == null)
+                    {
+                        tagId = Guid.NewGuid();
+                        _unitOfWork.Tags.Add(new Tag() { Id = tagId, Name = tagName, Slug = tagSlug });
+
+                    }
+                    else
+                    {
+                        tagId = tag.Id;
+                    }
+                    await _unitOfWork.Posts.AddTagToPost(postId, tagId);
+                }
+            }
 
             var result = await _unitOfWork.CompleteAsync();
             return result > 0 ? Ok() : BadRequest();
@@ -71,10 +95,33 @@ namespace API.Controllers.AdminAPI
             }
             _mapper.Map(request, post);
 
+            //Process tag
+            if (request.Tags != null && request.Tags.Length > 0)
+            {
+                foreach (var tagName in request.Tags)
+                {
+                    var tagSlug = TextHelper.ToUnsignedString(tagName);
+                    var tag = await _unitOfWork.Tags.GetBySlug(tagSlug);
+                    Guid tagId;
+                    if (tag == null)
+                    {
+                        tagId = Guid.NewGuid();
+                        _unitOfWork.Tags.Add(new Tag() { Id = tagId, Name = tagName, Slug = tagSlug });
+
+                    }
+                    else
+                    {
+                        tagId = tag.Id;
+                    }
+                    await _unitOfWork.Posts.AddTagToPost(id, tagId);
+
+                }
+            }
             await _unitOfWork.CompleteAsync();
 
             return Ok();
         }
+
 
         [HttpDelete]
         [Authorize(Posts.Delete)]
@@ -126,8 +173,6 @@ namespace API.Controllers.AdminAPI
             return Ok(result);
         }
 
-
-
         [HttpGet("approve/{id}")]
         [Authorize(Posts.Approve)]
         public async Task<IActionResult> ApprovePost(Guid id)
@@ -169,6 +214,22 @@ namespace API.Controllers.AdminAPI
         {
             var logs = await _unitOfWork.Posts.GetActivityLogs(id);
             return Ok(logs);
+        }
+
+        [HttpGet("tags")]
+        [Authorize(Posts.View)]
+        public async Task<ActionResult<List<string>>> GetAllTags()
+        {
+            var logs = await _unitOfWork.Posts.GetAllTags();
+            return Ok(logs);
+        }
+
+        [HttpGet("tags/{postId}")]
+        [Authorize(Posts.View)]
+        public async Task<ActionResult<List<string>>> GetPostTags(Guid postId)
+        {
+            var tagNames = await _unitOfWork.Posts.GetTagsByPostId(postId);
+            return Ok(tagNames);
         }
     }
 }

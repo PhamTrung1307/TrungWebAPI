@@ -8,6 +8,7 @@ using Core.SeedWorks.Constants;
 using Data.SeedWorks;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
+using System.Collections.Generic;
 
 namespace Data.Repositories
 {
@@ -29,7 +30,7 @@ namespace Data.Repositories
             }
             var roles = await _userManager.GetRolesAsync(user);
             var canApprove = false;
-            if (roles.Contains(Roles.Admin))
+            if (roles.Contains(Core.SeedWorks.Constants.Roles.Admin))
             {
                 canApprove = true;
             }
@@ -195,5 +196,71 @@ namespace Data.Repositories
                        && x.Status == PostStatus.published)
                .ToListAsync();
         }
+        public async Task<List<PostInListDTO>> GetLatestPublishPost(int top)
+        {
+            var query = _context.Posts.Where(x => x.Status == PostStatus.published)
+                .Take(top)
+                .OrderByDescending(x => x.DateCreated);
+
+            return await _mapper.ProjectTo<PostInListDTO>(query).ToListAsync();
+        }
+
+        public async Task<PageResult<PostInListDTO>> GetPostByCategoryPaging(string? categorySlug, int pageIndex = 1, int pageSize = 10)
+        {
+            var query= _context.Posts.AsQueryable();
+            if (!string.IsNullOrEmpty(categorySlug))
+            {
+                query = query.Where(x => x.CategorySlug == categorySlug);
+            }  
+
+            var totalRow = await query.CountAsync();
+            query = query.OrderByDescending(x => x.DateCreated)
+               .Skip((pageIndex - 1) * pageSize)
+               .Take(pageSize);
+              
+            return new PageResult<PostInListDTO>
+            {
+                Results = await _mapper.ProjectTo<PostInListDTO>(query).ToListAsync(),
+                CurrentPage = pageIndex,
+                RowCount = totalRow,
+                PageSize = pageSize
+            };
+        }
+
+        public async Task<PostDTO> GetBySlug(string slug)
+        {
+            var posts = await _context.Posts.FirstOrDefaultAsync(x => x.Slug == slug);
+            if (posts == null)           
+                throw new Exception("Không tồn tại bài viết");
+  
+            return _mapper.Map<PostDTO>(posts);
+        }
+
+        public async Task<List<string>> GetAllTags()
+        {
+            var query = _context.Tags.Select(x => x.Name);
+
+            return await query.ToListAsync();
+        }
+
+
+        public async Task AddTagToPost(Guid postId, Guid tagId)
+        {
+            await _context.PostTags.AddAsync(new PostTag()
+            {
+                PostId = postId,
+                TagId = tagId
+            });
+        }
+        public async Task<List<string>> GetTagsByPostId(Guid postId)
+        {
+            var query = from post in _context.Posts
+                        join pt in _context.PostTags on post.Id equals pt.PostId
+                        join t in _context.Tags on pt.TagId equals t.Id
+                        where post.Id == postId
+                        select t.Name;
+            return await query.ToListAsync();
+        }
+
     }
 }

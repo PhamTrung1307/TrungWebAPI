@@ -2,7 +2,7 @@
   "openapi": "3.0.1",
   "info": {
     "title": "API for Administrators",
-    "description": "API for CMS core domain. This domain keeps track of campaigns, campaign rules, and campaign execution.",
+    "description": "API for CMS core domain.",
     "version": "v1"
   },
   "paths": {
@@ -66,7 +66,8 @@
             "name": "type",
             "in": "query",
             "schema": {
-              "type": "string"
+              "type": "string",
+              "nullable": true
             }
           }
         ],
@@ -162,7 +163,8 @@
               "items": {
                 "type": "string",
                 "format": "uuid"
-              }
+              },
+              "nullable": true
             }
           }
         ],
@@ -225,7 +227,8 @@
             "name": "keyword",
             "in": "query",
             "schema": {
-              "type": "string"
+              "type": "string",
+              "nullable": true
             }
           },
           {
@@ -233,7 +236,8 @@
             "in": "query",
             "schema": {
               "type": "string",
-              "format": "uuid"
+              "format": "uuid",
+              "nullable": true
             }
           },
           {
@@ -510,6 +514,95 @@
         }
       }
     },
+    "/api/admin/post/tags": {
+      "get": {
+        "tags": [
+          "Post"
+        ],
+        "operationId": "GetAllTags",
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "type": "string"
+                  }
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "type": "string"
+                  }
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "type": "string"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/admin/post/tags/{postId}": {
+      "get": {
+        "tags": [
+          "Post"
+        ],
+        "operationId": "GetPostTags",
+        "parameters": [
+          {
+            "name": "postId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "type": "string"
+                  }
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "type": "string"
+                  }
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "type": "string"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
     "/api/admin/post-category": {
       "post": {
         "tags": [
@@ -595,7 +688,8 @@
               "items": {
                 "type": "string",
                 "format": "uuid"
-              }
+              },
+              "nullable": true
             }
           }
         ],
@@ -695,7 +789,8 @@
             "name": "keyword",
             "in": "query",
             "schema": {
-              "type": "string"
+              "type": "string",
+              "nullable": true
             }
           },
           {
@@ -785,7 +880,8 @@
               "items": {
                 "type": "string",
                 "format": "uuid"
-              }
+              },
+              "nullable": true
             }
           }
         ],
@@ -889,7 +985,8 @@
             "name": "keyword",
             "in": "query",
             "schema": {
-              "type": "string"
+              "type": "string",
+              "nullable": true
             }
           },
           {
@@ -986,7 +1083,8 @@
             "in": "path",
             "required": true,
             "schema": {
-              "type": "string"
+              "type": "string",
+              "nullable": true
             }
           }
         ],
@@ -1057,7 +1155,8 @@
             "name": "keyword",
             "in": "query",
             "schema": {
-              "type": "string"
+              "type": "string",
+              "nullable": true
             }
           },
           {
@@ -1146,7 +1245,8 @@
             "in": "query",
             "schema": {
               "type": "string",
-              "format": "uuid"
+              "format": "uuid",
+              "nullable": true
             }
           },
           {
@@ -1227,7 +1327,8 @@
             "in": "query",
             "schema": {
               "type": "string",
-              "format": "uuid"
+              "format": "uuid",
+              "nullable": true
             }
           },
           {
@@ -1405,7 +1506,8 @@
               "items": {
                 "type": "string",
                 "format": "uuid"
-              }
+              },
+              "nullable": true
             }
           }
         ],
@@ -1617,7 +1719,8 @@
             "name": "keyword",
             "in": "query",
             "schema": {
-              "type": "string"
+              "type": "string",
+              "nullable": true
             }
           },
           {
@@ -1830,7 +1933,8 @@
             "name": "keyword",
             "in": "query",
             "schema": {
-              "type": "string"
+              "type": "string",
+              "nullable": true
             }
           },
           {
@@ -1918,7 +2022,8 @@
               "type": "array",
               "items": {
                 "type": "string"
-              }
+              },
+              "nullable": true
             }
           }
         ],
@@ -2059,7 +2164,8 @@
             "in": "path",
             "required": true,
             "schema": {
-              "type": "string"
+              "type": "string",
+              "nullable": true
             }
           }
         ],
@@ -2237,7 +2343,10 @@
             "nullable": true
           },
           "tags": {
-            "type": "string",
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
             "nullable": true
           },
           "seoDescription": {
@@ -3325,6 +3434,19 @@
         },
         "additionalProperties": false
       }
+    },
+    "securitySchemes": {
+      "Bearer": {
+        "type": "http",
+        "description": "Nhập JWT theo dạng: Bearer {token}",
+        "scheme": "Bearer",
+        "bearerFormat": "JWT"
+      }
     }
-  }
+  },
+  "security": [
+    {
+      "Bearer": [ ]
+    }
+  ]
 }

@@ -17,5 +17,18 @@ namespace Core.Repositories
         Task<bool> HasPublishInLast(Guid id);
         Task<List<PostActivityLogDTO>> GetActivityLogs(Guid id);
         Task<List<Post>> GetListUnpaidPublishPosts(Guid userId);
+        Task<List<PostInListDTO>> GetLatestPublishPost(int top);
+
+        Task<PostDTO> GetBySlug(string slug);
+        Task<PageResult<PostInListDTO>> GetPostByCategoryPaging(string? categorySlug, int pageIndex = 1, int pageSize = 10);
+        Task<List<string>> GetAllTags();
+        Task AddTagToPost(Guid postId, Guid tagId);
+        Task<List<string>> GetTagsByPostId(Guid postId);
+
+
+
+
+
+
     }
 }

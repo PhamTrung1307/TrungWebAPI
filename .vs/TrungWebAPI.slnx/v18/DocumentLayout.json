@@ -1,54 +1,18 @@
 {
   "Version": 1,
-  "WorkspaceRootPath": "C:\\Users\\phamn\\Desktop\\HocTap\\TrungWebAPI\\",
+  "WorkspaceRootPath": "C:\\Users\\phamn\\OneDrive\\Desktop\\HocTap\\TrungWebAPI\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{CBAFC0F9-5B69-AE5B-776E-B650E010DF04}|src\\API\\API.csproj|c:\\users\\phamn\\desktop\\hoctap\\trungwebapi\\src\\api\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{CBAFC0F9-5B69-AE5B-776E-B650E010DF04}|src\\API\\API.csproj|solutionrelative:src\\api\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{CBAFC0F9-5B69-AE5B-776E-B650E010DF04}|src\\API\\API.csproj|c:\\users\\phamn\\onedrive\\desktop\\hoctap\\trungwebapi\\src\\api\\appsettings.development.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}",
+      "RelativeMoniker": "D:0:0:{CBAFC0F9-5B69-AE5B-776E-B650E010DF04}|src\\API\\API.csproj|solutionrelative:src\\api\\appsettings.development.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{CBAFC0F9-5B69-AE5B-776E-B650E010DF04}|src\\API\\API.csproj|c:\\users\\phamn\\desktop\\hoctap\\trungwebapi\\src\\api\\controllers\\adminapi\\usercontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{CBAFC0F9-5B69-AE5B-776E-B650E010DF04}|src\\API\\API.csproj|solutionrelative:src\\api\\controllers\\adminapi\\usercontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{CBAFC0F9-5B69-AE5B-776E-B650E010DF04}|src\\API\\API.csproj|c:\\users\\phamn\\onedrive\\desktop\\hoctap\\trungwebapi\\src\\api\\appsettings.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}",
+      "RelativeMoniker": "D:0:0:{CBAFC0F9-5B69-AE5B-776E-B650E010DF04}|src\\API\\API.csproj|solutionrelative:src\\api\\appsettings.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{F8BEF90E-1836-2878-29E0-299025F2C4E9}|src\\ClassLibrary1\\Core.csproj|c:\\users\\phamn\\desktop\\hoctap\\trungwebapi\\src\\classlibrary1\\seedworks\\iunitofwork.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{F8BEF90E-1836-2878-29E0-299025F2C4E9}|src\\ClassLibrary1\\Core.csproj|solutionrelative:src\\classlibrary1\\seedworks\\iunitofwork.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{7C847CAC-B615-4282-8099-098091E2690A}|src\\Data\\Data.csproj|c:\\users\\phamn\\desktop\\hoctap\\trungwebapi\\src\\data\\seedworks\\unitofwork.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{7C847CAC-B615-4282-8099-098091E2690A}|src\\Data\\Data.csproj|solutionrelative:src\\data\\seedworks\\unitofwork.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{7C847CAC-B615-4282-8099-098091E2690A}|src\\Data\\Data.csproj|c:\\users\\phamn\\desktop\\hoctap\\trungwebapi\\src\\data\\repositories\\userrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{7C847CAC-B615-4282-8099-098091E2690A}|src\\Data\\Data.csproj|solutionrelative:src\\data\\repositories\\userrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{CBAFC0F9-5B69-AE5B-776E-B650E010DF04}|src\\API\\API.csproj|c:\\users\\phamn\\desktop\\hoctap\\trungwebapi\\src\\api\\controllers\\adminapi\\postcategorycontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{CBAFC0F9-5B69-AE5B-776E-B650E010DF04}|src\\API\\API.csproj|solutionrelative:src\\api\\controllers\\adminapi\\postcategorycontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{F8BEF90E-1836-2878-29E0-299025F2C4E9}|src\\ClassLibrary1\\Core.csproj|c:\\users\\phamn\\desktop\\hoctap\\trungwebapi\\src\\classlibrary1\\repositories\\iuserrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{F8BEF90E-1836-2878-29E0-299025F2C4E9}|src\\ClassLibrary1\\Core.csproj|solutionrelative:src\\classlibrary1\\repositories\\iuserrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{7C847CAC-B615-4282-8099-098091E2690A}|src\\Data\\Data.csproj|c:\\users\\phamn\\desktop\\hoctap\\trungwebapi\\src\\data\\repositories\\seriesrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{7C847CAC-B615-4282-8099-098091E2690A}|src\\Data\\Data.csproj|solutionrelative:src\\data\\repositories\\seriesrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{CBAFC0F9-5B69-AE5B-776E-B650E010DF04}|src\\API\\API.csproj|c:\\users\\phamn\\desktop\\hoctap\\trungwebapi\\src\\api\\controllers\\adminapi\\seriescontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{CBAFC0F9-5B69-AE5B-776E-B650E010DF04}|src\\API\\API.csproj|solutionrelative:src\\api\\controllers\\adminapi\\seriescontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{CBAFC0F9-5B69-AE5B-776E-B650E010DF04}|src\\API\\API.csproj|c:\\users\\phamn\\desktop\\hoctap\\trungwebapi\\src\\api\\controllers\\adminapi\\postcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{CBAFC0F9-5B69-AE5B-776E-B650E010DF04}|src\\API\\API.csproj|solutionrelative:src\\api\\controllers\\adminapi\\postcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{F8BEF90E-1836-2878-29E0-299025F2C4E9}|src\\ClassLibrary1\\Core.csproj|c:\\users\\phamn\\desktop\\hoctap\\trungwebapi\\src\\classlibrary1\\domain\\content\\postinseries.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{F8BEF90E-1836-2878-29E0-299025F2C4E9}|src\\ClassLibrary1\\Core.csproj|solutionrelative:src\\classlibrary1\\domain\\content\\postinseries.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{7C847CAC-B615-4282-8099-098091E2690A}|src\\Data\\Data.csproj|c:\\users\\phamn\\desktop\\hoctap\\trungwebapi\\src\\data\\repositories\\postrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{7C847CAC-B615-4282-8099-098091E2690A}|src\\Data\\Data.csproj|solutionrelative:src\\data\\repositories\\postrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{7C847CAC-B615-4282-8099-098091E2690A}|src\\Data\\Data.csproj|c:\\users\\phamn\\onedrive\\desktop\\hoctap\\trungwebapi\\src\\data\\dataseeder.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{7C847CAC-B615-4282-8099-098091E2690A}|src\\Data\\Data.csproj|solutionrelative:src\\data\\dataseeder.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     }
   ],
   "DocumentGroupContainers": [
@@ -63,158 +27,39 @@
             {
               "$type": "Document",
               "DocumentIndex": 0,
-              "Title": "Program.cs",
-              "DocumentMoniker": "C:\\Users\\phamn\\Desktop\\HocTap\\TrungWebAPI\\src\\API\\Program.cs",
-              "RelativeDocumentMoniker": "src\\API\\Program.cs",
-              "ToolTip": "C:\\Users\\phamn\\Desktop\\HocTap\\TrungWebAPI\\src\\API\\Program.cs",
-              "RelativeToolTip": "src\\API\\Program.cs",
-              "ViewState": "AgIAACwAAAAAAAAAAAAYwD8AAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-12-17T07:43:40.32Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 2,
-              "Title": "IUnitOfWork.cs",
-              "DocumentMoniker": "C:\\Users\\phamn\\Desktop\\HocTap\\TrungWebAPI\\src\\ClassLibrary1\\SeedWorks\\IUnitOfWork.cs",
-              "RelativeDocumentMoniker": "src\\ClassLibrary1\\SeedWorks\\IUnitOfWork.cs",
-              "ToolTip": "C:\\Users\\phamn\\Desktop\\HocTap\\TrungWebAPI\\src\\ClassLibrary1\\SeedWorks\\IUnitOfWork.cs",
-              "RelativeToolTip": "src\\ClassLibrary1\\SeedWorks\\IUnitOfWork.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAkAAAA0AAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-12-17T07:35:27.22Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 4,
-              "Title": "UserRepository.cs",
-              "DocumentMoniker": "C:\\Users\\phamn\\Desktop\\HocTap\\TrungWebAPI\\src\\Data\\Repositories\\UserRepository.cs",
-              "RelativeDocumentMoniker": "src\\Data\\Repositories\\UserRepository.cs",
-              "ToolTip": "C:\\Users\\phamn\\Desktop\\HocTap\\TrungWebAPI\\src\\Data\\Repositories\\UserRepository.cs",
-              "RelativeToolTip": "src\\Data\\Repositories\\UserRepository.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAABUAAAAXAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-12-17T07:30:42.549Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 6,
-              "Title": "IUserRepository.cs",
-              "DocumentMoniker": "C:\\Users\\phamn\\Desktop\\HocTap\\TrungWebAPI\\src\\ClassLibrary1\\Repositories\\IUserRepository.cs",
-              "RelativeDocumentMoniker": "src\\ClassLibrary1\\Repositories\\IUserRepository.cs",
-              "ToolTip": "C:\\Users\\phamn\\Desktop\\HocTap\\TrungWebAPI\\src\\ClassLibrary1\\Repositories\\IUserRepository.cs",
-              "RelativeToolTip": "src\\ClassLibrary1\\Repositories\\IUserRepository.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAUAAAAtAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-12-17T07:30:17.562Z",
+              "Title": "appsettings.Development.json",
+              "DocumentMoniker": "C:\\Users\\phamn\\OneDrive\\Desktop\\HocTap\\TrungWebAPI\\src\\API\\appsettings.Development.json",
+              "RelativeDocumentMoniker": "src\\API\\appsettings.Development.json",
+              "ToolTip": "C:\\Users\\phamn\\OneDrive\\Desktop\\HocTap\\TrungWebAPI\\src\\API\\appsettings.Development.json",
+              "RelativeToolTip": "src\\API\\appsettings.Development.json",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAIAAAAiAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001642|",
+              "WhenOpened": "2026-03-19T04:31:04.163Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
               "DocumentIndex": 1,
-              "Title": "UserController.cs",
-              "DocumentMoniker": "C:\\Users\\phamn\\Desktop\\HocTap\\TrungWebAPI\\src\\API\\Controllers\\AdminAPI\\UserController.cs",
-              "RelativeDocumentMoniker": "src\\API\\Controllers\\AdminAPI\\UserController.cs",
-              "ToolTip": "C:\\Users\\phamn\\Desktop\\HocTap\\TrungWebAPI\\src\\API\\Controllers\\AdminAPI\\UserController.cs",
-              "RelativeToolTip": "src\\API\\Controllers\\AdminAPI\\UserController.cs",
-              "ViewState": "AgIAALwAAAAAAAAAAAAewM8AAAAsAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-12-17T07:28:06.979Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 5,
-              "Title": "PostCategoryController.cs",
-              "DocumentMoniker": "C:\\Users\\phamn\\Desktop\\HocTap\\TrungWebAPI\\src\\API\\Controllers\\AdminAPI\\PostCategoryController.cs",
-              "RelativeDocumentMoniker": "src\\API\\Controllers\\AdminAPI\\PostCategoryController.cs",
-              "ToolTip": "C:\\Users\\phamn\\Desktop\\HocTap\\TrungWebAPI\\src\\API\\Controllers\\AdminAPI\\PostCategoryController.cs",
-              "RelativeToolTip": "src\\API\\Controllers\\AdminAPI\\PostCategoryController.cs",
-              "ViewState": "AgIAADAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-12-17T07:25:12.01Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 7,
-              "Title": "SeriesRepository.cs",
-              "DocumentMoniker": "C:\\Users\\phamn\\Desktop\\HocTap\\TrungWebAPI\\src\\Data\\Repositories\\SeriesRepository.cs",
-              "RelativeDocumentMoniker": "src\\Data\\Repositories\\SeriesRepository.cs",
-              "ToolTip": "C:\\Users\\phamn\\Desktop\\HocTap\\TrungWebAPI\\src\\Data\\Repositories\\SeriesRepository.cs",
-              "RelativeToolTip": "src\\Data\\Repositories\\SeriesRepository.cs",
-              "ViewState": "AgIAAFMAAAAAAAAAAAAMwGIAAAAuAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-12-17T07:22:17.548Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 8,
-              "Title": "SeriesController.cs",
-              "DocumentMoniker": "C:\\Users\\phamn\\Desktop\\HocTap\\TrungWebAPI\\src\\API\\Controllers\\AdminAPI\\SeriesController.cs",
-              "RelativeDocumentMoniker": "src\\API\\Controllers\\AdminAPI\\SeriesController.cs",
-              "ToolTip": "C:\\Users\\phamn\\Desktop\\HocTap\\TrungWebAPI\\src\\API\\Controllers\\AdminAPI\\SeriesController.cs",
-              "RelativeToolTip": "src\\API\\Controllers\\AdminAPI\\SeriesController.cs",
-              "ViewState": "AgIAAFAAAAAAAAAAAAAewGMAAAA0AAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-12-17T07:20:35.233Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 3,
-              "Title": "UnitOfWork.cs",
-              "DocumentMoniker": "C:\\Users\\phamn\\Desktop\\HocTap\\TrungWebAPI\\src\\Data\\SeedWorks\\UnitOfWork.cs",
-              "RelativeDocumentMoniker": "src\\Data\\SeedWorks\\UnitOfWork.cs",
-              "ToolTip": "C:\\Users\\phamn\\Desktop\\HocTap\\TrungWebAPI\\src\\Data\\SeedWorks\\UnitOfWork.cs",
-              "RelativeToolTip": "src\\Data\\SeedWorks\\UnitOfWork.cs",
-              "ViewState": "AgIAABAAAAAAAAAAAAAgwB8AAAAlAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-12-17T06:17:02.264Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 10,
-              "Title": "PostInSeries.cs",
-              "DocumentMoniker": "C:\\Users\\phamn\\Desktop\\HocTap\\TrungWebAPI\\src\\ClassLibrary1\\Domain\\Content\\PostInSeries.cs",
-              "RelativeDocumentMoniker": "src\\ClassLibrary1\\Domain\\Content\\PostInSeries.cs",
-              "ToolTip": "C:\\Users\\phamn\\Desktop\\HocTap\\TrungWebAPI\\src\\ClassLibrary1\\Domain\\Content\\PostInSeries.cs",
-              "RelativeToolTip": "src\\ClassLibrary1\\Domain\\Content\\PostInSeries.cs",
+              "Title": "appsettings.json",
+              "DocumentMoniker": "C:\\Users\\phamn\\OneDrive\\Desktop\\HocTap\\TrungWebAPI\\src\\API\\appsettings.json",
+              "RelativeDocumentMoniker": "src\\API\\appsettings.json",
+              "ToolTip": "C:\\Users\\phamn\\OneDrive\\Desktop\\HocTap\\TrungWebAPI\\src\\API\\appsettings.json",
+              "RelativeToolTip": "src\\API\\appsettings.json",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-12-17T07:20:14.429Z",
-              "EditorCaption": ""
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001642|",
+              "WhenOpened": "2026-03-19T04:31:01.269Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 11,
-              "Title": "PostRepository.cs",
-              "DocumentMoniker": "C:\\Users\\phamn\\Desktop\\HocTap\\TrungWebAPI\\src\\Data\\Repositories\\PostRepository.cs",
-              "RelativeDocumentMoniker": "src\\Data\\Repositories\\PostRepository.cs",
-              "ToolTip": "C:\\Users\\phamn\\Desktop\\HocTap\\TrungWebAPI\\src\\Data\\Repositories\\PostRepository.cs",
-              "RelativeToolTip": "src\\Data\\Repositories\\PostRepository.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAA0AAABNAAAAAAAAAA==",
+              "DocumentIndex": 2,
+              "Title": "DataSeeder.cs",
+              "DocumentMoniker": "C:\\Users\\phamn\\OneDrive\\Desktop\\HocTap\\TrungWebAPI\\src\\Data\\DataSeeder.cs",
+              "RelativeDocumentMoniker": "src\\Data\\DataSeeder.cs",
+              "ToolTip": "C:\\Users\\phamn\\OneDrive\\Desktop\\HocTap\\TrungWebAPI\\src\\Data\\DataSeeder.cs",
+              "RelativeToolTip": "src\\Data\\DataSeeder.cs",
+              "ViewState": "AgIAABkAAAAAAAAAAAAgwCkAAABMAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-12-17T06:18:15.818Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 9,
-              "Title": "PostController.cs",
-              "DocumentMoniker": "C:\\Users\\phamn\\Desktop\\HocTap\\TrungWebAPI\\src\\API\\Controllers\\AdminAPI\\PostController.cs",
-              "RelativeDocumentMoniker": "src\\API\\Controllers\\AdminAPI\\PostController.cs",
-              "ToolTip": "C:\\Users\\phamn\\Desktop\\HocTap\\TrungWebAPI\\src\\API\\Controllers\\AdminAPI\\PostController.cs",
-              "RelativeToolTip": "src\\API\\Controllers\\AdminAPI\\PostController.cs",
-              "ViewState": "AgIAAFMAAAAAAAAAAAAIwE8AAAAYAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-12-17T05:21:36.124Z",
-              "EditorCaption": ""
+              "WhenOpened": "2026-03-19T03:42:54.745Z"
             }
           ]
         }
