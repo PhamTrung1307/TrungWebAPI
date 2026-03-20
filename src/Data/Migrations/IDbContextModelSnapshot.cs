@@ -28,12 +28,31 @@ namespace Data.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("uniqueidentifier");
 
+                    b.Property<string>("AuthorName")
+                        .IsRequired()
+                        .HasMaxLength(250)
+                        .HasColumnType("nvarchar(250)");
+
                     b.Property<Guid>("AuthorUserID")
                         .HasMaxLength(250)
                         .HasColumnType("uniqueidentifier");
 
+                    b.Property<string>("AuthorUserName")
+                        .IsRequired()
+                        .HasMaxLength(250)
+                        .HasColumnType("nvarchar(250)");
+
                     b.Property<Guid>("CategoryID")
                         .HasColumnType("uniqueidentifier");
+
+                    b.Property<string>("CategoryName")
+                        .IsRequired()
+                        .HasMaxLength(250)
+                        .HasColumnType("nvarchar(250)");
+
+                    b.Property<string>("CategorySlug")
+                        .IsRequired()
+                        .HasColumnType("varchar(250)");
 
                     b.Property<string>("Content")
                         .HasColumnType("nvarchar(max)");
@@ -55,6 +74,9 @@ namespace Data.Migrations
                         .IsRequired()
                         .HasMaxLength(250)
                         .HasColumnType("nvarchar(250)");
+
+                    b.Property<DateTime?>("PaidDate")
+                        .HasColumnType("datetime2");
 
                     b.Property<double>("RoyaltyAmount")
                         .HasColumnType("float");
@@ -89,7 +111,7 @@ namespace Data.Migrations
                     b.HasIndex("Slug")
                         .IsUnique();
 
-                    b.ToTable("Posts");
+                    b.ToTable("Posts", (string)null);
                 });
 
             modelBuilder.Entity("Core.Domain.Content.PostActivityLog", b =>
@@ -123,7 +145,7 @@ namespace Data.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("PostActivityLogs");
+                    b.ToTable("PostActivityLogs", (string)null);
                 });
 
             modelBuilder.Entity("Core.Domain.Content.PostCategory", b =>
@@ -165,7 +187,7 @@ namespace Data.Migrations
                     b.HasIndex("Slug")
                         .IsUnique();
 
-                    b.ToTable("PostCategories");
+                    b.ToTable("PostCategories", (string)null);
                 });
 
             modelBuilder.Entity("Core.Domain.Content.PostInSeries", b =>
@@ -181,7 +203,7 @@ namespace Data.Migrations
 
                     b.HasKey("PostId", "SeriesId");
 
-                    b.ToTable("PostInSeries");
+                    b.ToTable("PostInSeries", (string)null);
                 });
 
             modelBuilder.Entity("Core.Domain.Content.PostTag", b =>
@@ -194,7 +216,7 @@ namespace Data.Migrations
 
                     b.HasKey("PostId", "TagId");
 
-                    b.ToTable("PostTags");
+                    b.ToTable("PostTags", (string)null);
                 });
 
             modelBuilder.Entity("Core.Domain.Content.Series", b =>
@@ -244,7 +266,7 @@ namespace Data.Migrations
                     b.HasIndex("Slug")
                         .IsUnique();
 
-                    b.ToTable("Series");
+                    b.ToTable("Series", (string)null);
                 });
 
             modelBuilder.Entity("Core.Domain.Content.Tag", b =>
@@ -265,7 +287,7 @@ namespace Data.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Tags");
+                    b.ToTable("Tags", (string)null);
                 });
 
             modelBuilder.Entity("Core.Domain.Identity.AppRole", b =>
@@ -290,7 +312,7 @@ namespace Data.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("AppRoles");
+                    b.ToTable("AppRoles", (string)null);
                 });
 
             modelBuilder.Entity("Core.Domain.Identity.AppUser", b =>
@@ -387,7 +409,47 @@ namespace Data.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("AppUsers");
+                    b.ToTable("AppUsers", (string)null);
+                });
+
+            modelBuilder.Entity("Core.Domain.Royalty.Transaction", b =>
+                {
+                    b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<double>("Amount")
+                        .HasColumnType("float");
+
+                    b.Property<DateTime>("DateCreated")
+                        .HasColumnType("datetime2");
+
+                    b.Property<Guid>("FromUserId")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<string>("FromUserName")
+                        .IsRequired()
+                        .HasMaxLength(250)
+                        .HasColumnType("nvarchar(250)");
+
+                    b.Property<string>("Note")
+                        .HasMaxLength(250)
+                        .HasColumnType("nvarchar(250)");
+
+                    b.Property<Guid>("ToUserId")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<string>("ToUserName")
+                        .IsRequired()
+                        .HasMaxLength(250)
+                        .HasColumnType("nvarchar(250)");
+
+                    b.Property<int>("TransactionType")
+                        .HasColumnType("int");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("Transactions", (string)null);
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<System.Guid>", b =>

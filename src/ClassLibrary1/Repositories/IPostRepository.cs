@@ -7,7 +7,28 @@ namespace Core.Repositories
 {
     public interface IPostRepository : IRepository<Post, Guid>
     {
-      Task<List<Post>> GetPopularPostsAsync(int count);
-      Task<PageResult<PostInListDTO>> GetPagedPostsAsync(string? key,Guid? categoryId,int pageIndex=1, int pageSize=10);
+        Task<PageResult<PostInListDTO>> GetAllPaging(string? keyword, Guid currentUserId, Guid? categoryId, int pageIndex = 1, int pageSize = 10);
+        Task<bool> IsSlugAlreadyExisted(string slug, Guid? currentId = null);
+        Task<List<SeriesInListDTO>> GetAllSeries(Guid postId);
+        Task Approve(Guid id, Guid currentUserId);
+        Task SendToApprove(Guid id, Guid currentUserId);
+        Task ReturnBack(Guid id, Guid currentUserId, string note);
+        Task<string> GetReturnReason(Guid id);
+        Task<bool> HasPublishInLast(Guid id);
+        Task<List<PostActivityLogDTO>> GetActivityLogs(Guid id);
+        Task<List<Post>> GetListUnpaidPublishPosts(Guid userId);
+        Task<List<PostInListDTO>> GetLatestPublishPost(int top);
+
+        Task<PostDTO> GetBySlug(string slug);
+        Task<PageResult<PostInListDTO>> GetPostByCategoryPaging(string? categorySlug, int pageIndex = 1, int pageSize = 10);
+        Task<List<string>> GetAllTags();
+        Task AddTagToPost(Guid postId, Guid tagId);
+        Task<List<string>> GetTagsByPostId(Guid postId);
+
+
+
+
+
+
     }
 }

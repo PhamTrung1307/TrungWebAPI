@@ -5,7 +5,6 @@ import { DefaultLayoutComponent } from './containers';
 import { Page404Component } from './views/auth/page404/page404.component';
 import { Page500Component } from './views/auth/page500/page500.component';
 import { LoginComponent } from './views/auth/login/login.component';
-import { RegisterComponent } from './views/auth/register/register.component';
 
 const routes: Routes = [
    
@@ -41,6 +40,11 @@ const routes: Routes = [
         loadChildren: () =>
           import('./views/content/content.module').then((m) => m.ContentModule)
       },
+       {
+        path: 'royalty',
+        loadChildren: () =>
+          import('./views/royalty/royalty.module').then((m) => m.RoyaltyModule),
+      },
     ]
   },
   {
@@ -64,13 +68,7 @@ const routes: Routes = [
       title: 'Login Page'
     }
   },
-  {
-    path: 'register',
-    component: RegisterComponent,
-    data: {
-      title: 'Register Page'
-    }
-  },
+
   {path: '**', redirectTo: 'dashboard'}
 ];
 
