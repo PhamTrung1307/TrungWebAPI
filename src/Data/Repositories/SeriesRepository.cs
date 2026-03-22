@@ -7,7 +7,7 @@ using Data;
 using Data.SeedWorks;
 using Microsoft.EntityFrameworkCore;
 
-namespace TeduBlog.Data.Repositories
+namespace Data.Repositories
 {
     public class SeriesRepository : RepositoryBase<Series, Guid>, ISeriesRepository
     {

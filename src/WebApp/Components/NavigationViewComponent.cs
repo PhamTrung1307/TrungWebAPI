@@ -1,5 +1,5 @@
-﻿using Core.SeedWorks;
-using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Mvc;
+using Core.SeedWorks;
 using WebApp.Models;
 
 namespace WebApp.Components

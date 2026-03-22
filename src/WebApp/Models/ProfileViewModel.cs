@@ -1,4 +1,4 @@
-﻿namespace TeduBlog.WebApp.Models
+﻿namespace WebApp.Models
 {
     public class ProfileViewModel
     {

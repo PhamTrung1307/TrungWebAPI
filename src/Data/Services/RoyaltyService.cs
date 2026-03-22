@@ -22,7 +22,7 @@ namespace Data.Services
             _unitOfWork = unitOfWork;
             _configuration = configuration;
         }
-        public async Task<List<RoyaltyReportByMonthDto>> GetRoyaltyReportByMonthAsync(Guid? userId, int fromMonth, int fromYear, int toMonth, int toYear)
+        public async Task<List<RoyaltyReportByMonthDTO>> GetRoyaltyReportByMonthAsync(Guid? userId, int fromMonth, int fromYear, int toMonth, int toYear)
         {
             using (var conn = new SqlConnection(_configuration.GetConnectionString("DefaultConnection")))
             {
@@ -48,7 +48,7 @@ namespace Data.Services
                                     and (@toYear = 0 or datepart(year,p.DateCreated) <= @toYear)
                                     and (@userId is null or p.AuthorUserId = @userId)";
 
-                var items = await conn.QueryAsync<RoyaltyReportByMonthDto>(coreSql, new
+                var items = await conn.QueryAsync<RoyaltyReportByMonthDTO>(coreSql, new
                 {
                     fromMonth,
                     fromYear,
@@ -60,7 +60,7 @@ namespace Data.Services
             }
         }
 
-        public async Task<List<RoyaltyReportByUserDto>> GetRoyaltyReportByUserAsync(Guid? userId, int fromMonth, int fromYear, int toMonth, int toYear)
+        public async Task<List<RoyaltyReportByUserDTO>> GetRoyaltyReportByUserAsync(Guid? userId, int fromMonth, int fromYear, int toMonth, int toYear)
         {
             using (var conn = new SqlConnection(_configuration.GetConnectionString("DefaultConnection")))
             {
@@ -88,7 +88,7 @@ namespace Data.Services
                                     and (@toYear = 0 or datepart(year,p.DateCreated) <= @toYear)
                                     and (@userId is null or p.AuthorUserId = @userId)";
 
-                var items = await conn.QueryAsync<RoyaltyReportByUserDto>(coreSql, new
+                var items = await conn.QueryAsync<RoyaltyReportByUserDTO>(coreSql, new
                 {
                     fromMonth,
                     fromYear,

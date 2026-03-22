@@ -49,7 +49,7 @@ namespace API.Services
         /// <param name="token"></param>
         /// <returns></returns>
         /// <exception cref="SecurityTokenException"></exception>
-        public ClaimsPrincipal GetPrincipalFromExpiredToken(string token)
+        public ClaimsPrincipal GetPrincipalFromExpireDTOken(string token)
         {
             var tokenValidationParameters = new TokenValidationParameters
             {

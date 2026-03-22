@@ -1,5 +1,5 @@
-﻿using Core.Models;
-using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Mvc;
+using Core.Models;
 
 namespace WebApp.Components
 {

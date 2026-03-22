@@ -1,6 +1,6 @@
 ﻿using System.Text.Json.Serialization;
 
-namespace TeduBlog.WebApp.Models
+namespace WebApp.Models
 {
     public class UploadResponse
     {

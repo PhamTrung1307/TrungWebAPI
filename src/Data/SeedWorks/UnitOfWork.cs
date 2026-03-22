@@ -4,7 +4,6 @@ using Core.Repositories;
 using Core.SeedWorks;
 using Data.Repositories;
 using Microsoft.AspNetCore.Identity;
-using TeduBlog.Data.Repositories;
 
 namespace Data.SeedWorks
 {

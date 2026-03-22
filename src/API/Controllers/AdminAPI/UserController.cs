@@ -39,10 +39,10 @@ namespace API.Controllers.AdminAPI
             {
                 return NotFound();
             }
-            var userDto = _mapper.Map<AppUser, UserDTO>(user);
+            var userDTO = _mapper.Map<AppUser, UserDTO>(user);
             var roles = await _userManager.GetRolesAsync(user);
-            userDto.Roles = roles;
-            return Ok(userDto);
+            userDTO.Roles = roles;
+            return Ok(userDTO);
         }
 
         [HttpGet("paging")]

@@ -1,6 +1,6 @@
-using Core.SeedWorks;
 using Microsoft.AspNetCore.Mvc;
 using System.Diagnostics;
+using Core.SeedWorks;
 using WebApp.Models;
 
 namespace WebApp.Controllers

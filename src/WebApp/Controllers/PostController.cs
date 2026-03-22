@@ -1,8 +1,6 @@
-﻿using Core.Domain.Content;
+﻿using Microsoft.AspNetCore.Mvc;
 using Core.SeedWorks;
-using Microsoft.AspNetCore.Mvc;
 using WebApp.Models;
-using static Core.SeedWorks.Constants.Permissions;
 
 namespace WebApp.Controllers
 {
@@ -13,6 +11,7 @@ namespace WebApp.Controllers
         {
             _unitOfWork = unitOfWork;
         }
+
         [Route("posts")]
         public IActionResult Index()
         {
@@ -22,9 +21,8 @@ namespace WebApp.Controllers
         [Route("posts/{categorySlug}")]
         public async Task<IActionResult> ListByCategory([FromRoute] string categorySlug, [FromQuery] int page = 1)
         {
-            var posts = await _unitOfWork.Posts.GetPostByCategoryPaging(categorySlug,page);
-            var category = await _unitOfWork.PostCategories.GetBySlug(categorySlug); 
-
+            var posts = await _unitOfWork.Posts.GetPostByCategoryPaging(categorySlug, page, 2);
+            var category = await _unitOfWork.PostCategories.GetBySlug(categorySlug);
             return View(new PostListByCategoryViewModel(){
                 Posts = posts,
                 Category = category
@@ -32,20 +30,28 @@ namespace WebApp.Controllers
         }
 
         [Route("tag/{tagSlug}")]
-        public IActionResult ListByTag([FromRoute] string tagSlug, [FromQuery] int? page = 1)
+        public async Task<IActionResult> ListByTag([FromRoute] string tagSlug, [FromQuery] int page = 1)
         {
-            return View();
+            var posts = await _unitOfWork.Posts.GetPostByTagPaging(tagSlug, page, 2);
+            var tag = await _unitOfWork.Tags.GetBySlug(tagSlug);
+            return View(new PostListByTagViewModel()
+            {
+                Posts = posts,
+                Tag = tag
+            });
         }
 
         [Route("post/{slug}")]
-        public async Task<IActionResult>Details([FromRoute] string slug)
+        public async Task<IActionResult> Details([FromRoute] string slug)
         {
-            var post = await  _unitOfWork.Posts.GetBySlug(slug);
+            var post = await _unitOfWork.Posts.GetBySlug(slug);
             var category = await _unitOfWork.PostCategories.GetBySlug(post.CategorySlug);
-
-            return View(new PostDetailViewModel(){
+            var tags = await _unitOfWork.Posts.GetTagObjectsByPostId(post.Id);
+            return View(new PostDetailViewModel()
+            {
                 Post = post,
-                Category = category
+                Category = category,
+                Tags = tags
             });
         }
     }

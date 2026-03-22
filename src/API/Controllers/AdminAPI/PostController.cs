@@ -184,9 +184,9 @@ namespace API.Controllers.AdminAPI
 
         [HttpGet("approval-submit/{id}")]
         [Authorize(Posts.Edit)]
-        public async Task<IActionResult> SendToApprove(Guid id)
+        public async Task<IActionResult> SenDTOApprove(Guid id)
         {
-            await _unitOfWork.Posts.SendToApprove(id, User.GetUserId());
+            await _unitOfWork.Posts.SenDTOApprove(id, User.GetUserId());
             await _unitOfWork.CompleteAsync();
             return Ok();
         }

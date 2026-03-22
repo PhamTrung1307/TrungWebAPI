@@ -80,8 +80,8 @@ namespace API.Controllers.AdminAPI
             {
                 return NotFound();
             }
-            var categoryDto = _mapper.Map<PostCategoryDTO>(category);
-            return Ok(categoryDto);
+            var categoryDTO = _mapper.Map<PostCategoryDTO>(category);
+            return Ok(categoryDTO);
         }
 
         [HttpGet]

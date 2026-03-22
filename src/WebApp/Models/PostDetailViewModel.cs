@@ -7,6 +7,6 @@ namespace WebApp.Models
         public PostDTO Post { get; set; }
         public PostCategoryDTO Category { get; set; }
 
-      //  public List<tagdt> Tags { get; set; }
+        public List<TagDTO> Tags { get; set; }
     }
 }
