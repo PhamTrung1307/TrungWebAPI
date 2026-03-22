@@ -1,6 +1,6 @@
 ﻿using System.ComponentModel.DataAnnotations;
 
-namespace TeduBlog.WebApp.Models
+namespace WebApp.Models
 {
     public class ResetPasswordViewModel
     {

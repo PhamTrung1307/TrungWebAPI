@@ -23,13 +23,13 @@
             {
                 <!-- Post preview-->
                 <div class="post-preview">
-                    <a href="@string.Format(UrlConsts.PostDetails, item.Slug)" title="@item.Name">
+                    <a href="@string.Format(UrlConsts.PostDetails,item.Slug)" title="@item.Name">
                         <h2 class="post-title">@item.Name</h2>
                         <h3 class="post-subtitle">@item.Description</h3>
                     </a>
                     <p class="post-meta">
                         Posted by
-                        <a href="@string.Format(UrlConsts.Author, item.AuthorUserName)">@item.AuthorName</a>
+                        <a href="@string.Format(UrlConsts.Author,item.AuthorUserName)">@item.AuthorName</a>
                         on @item.DateCreated.ToLongTimeString()
                     </p>
                 </div>

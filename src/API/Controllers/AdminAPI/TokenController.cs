@@ -29,7 +29,7 @@ namespace API.Controllers.AdminAPI
 
             string accessToken = tokenRequest.AccessToken;
             string refreshToken = tokenRequest.RefreshToken;
-            var principal = _tokenService.GetPrincipalFromExpiredToken(accessToken);
+            var principal = _tokenService.GetPrincipalFromExpireDTOken(accessToken);
 
             if (principal == null || principal.Identity == null || principal.Identity.Name == null)
                 return BadRequest("Invalid token");

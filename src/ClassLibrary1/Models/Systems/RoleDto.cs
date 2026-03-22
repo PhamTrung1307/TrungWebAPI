@@ -2,7 +2,7 @@
 
 namespace Core.Models.Systems
 {
-    public class RoleDto
+    public class RoleDTO
     {
         public Guid Id { get; set; }
         public string Name { get; set; }
@@ -12,7 +12,7 @@ namespace Core.Models.Systems
         {
             public autoMapperProfiles()
             {
-                CreateMap<AppRole, RoleDto>();
+                CreateMap<AppRole, RoleDTO>();
             }
         }
     }

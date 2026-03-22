@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Core.Domain.Royalty
 {
-    public class RoyaltyReportByUserDto
+    public class RoyaltyReportByUserDTO
     {
         public Guid UserId { get; set; }
         public required string UserName { get; set; }

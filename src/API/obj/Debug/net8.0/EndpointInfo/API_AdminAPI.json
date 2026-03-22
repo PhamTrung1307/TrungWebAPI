@@ -361,7 +361,7 @@
         "tags": [
           "Post"
         ],
-        "operationId": "SendToApprove",
+        "operationId": "SenDTOApprove",
         "parameters": [
           {
             "name": "id",
@@ -956,17 +956,17 @@
             "content": {
               "text/plain": {
                 "schema": {
-                  "$ref": "#/components/schemas/RoleDto"
+                  "$ref": "#/components/schemas/RoleDTO"
                 }
               },
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/RoleDto"
+                  "$ref": "#/components/schemas/RoleDTO"
                 }
               },
               "text/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/RoleDto"
+                  "$ref": "#/components/schemas/RoleDTO"
                 }
               }
             }
@@ -1014,17 +1014,17 @@
             "content": {
               "text/plain": {
                 "schema": {
-                  "$ref": "#/components/schemas/RoleDtoPageResult"
+                  "$ref": "#/components/schemas/RoleDTOPageResult"
                 }
               },
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/RoleDtoPageResult"
+                  "$ref": "#/components/schemas/RoleDTOPageResult"
                 }
               },
               "text/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/RoleDtoPageResult"
+                  "$ref": "#/components/schemas/RoleDTOPageResult"
                 }
               }
             }
@@ -1046,7 +1046,7 @@
                 "schema": {
                   "type": "array",
                   "items": {
-                    "$ref": "#/components/schemas/RoleDto"
+                    "$ref": "#/components/schemas/RoleDTO"
                   }
                 }
               },
@@ -1054,7 +1054,7 @@
                 "schema": {
                   "type": "array",
                   "items": {
-                    "$ref": "#/components/schemas/RoleDto"
+                    "$ref": "#/components/schemas/RoleDTO"
                   }
                 }
               },
@@ -1062,7 +1062,7 @@
                 "schema": {
                   "type": "array",
                   "items": {
-                    "$ref": "#/components/schemas/RoleDto"
+                    "$ref": "#/components/schemas/RoleDTO"
                   }
                 }
               }
@@ -1290,7 +1290,7 @@
                 "schema": {
                   "type": "array",
                   "items": {
-                    "$ref": "#/components/schemas/RoyaltyReportByUserDto"
+                    "$ref": "#/components/schemas/RoyaltyReportByUserDTO"
                   }
                 }
               },
@@ -1298,7 +1298,7 @@
                 "schema": {
                   "type": "array",
                   "items": {
-                    "$ref": "#/components/schemas/RoyaltyReportByUserDto"
+                    "$ref": "#/components/schemas/RoyaltyReportByUserDTO"
                   }
                 }
               },
@@ -1306,7 +1306,7 @@
                 "schema": {
                   "type": "array",
                   "items": {
-                    "$ref": "#/components/schemas/RoyaltyReportByUserDto"
+                    "$ref": "#/components/schemas/RoyaltyReportByUserDTO"
                   }
                 }
               }
@@ -1372,7 +1372,7 @@
                 "schema": {
                   "type": "array",
                   "items": {
-                    "$ref": "#/components/schemas/RoyaltyReportByMonthDto"
+                    "$ref": "#/components/schemas/RoyaltyReportByMonthDTO"
                   }
                 }
               },
@@ -1380,7 +1380,7 @@
                 "schema": {
                   "type": "array",
                   "items": {
-                    "$ref": "#/components/schemas/RoyaltyReportByMonthDto"
+                    "$ref": "#/components/schemas/RoyaltyReportByMonthDTO"
                   }
                 }
               },
@@ -1388,7 +1388,7 @@
                 "schema": {
                   "type": "array",
                   "items": {
-                    "$ref": "#/components/schemas/RoyaltyReportByMonthDto"
+                    "$ref": "#/components/schemas/RoyaltyReportByMonthDTO"
                   }
                 }
               }
@@ -2877,7 +2877,7 @@
         },
         "additionalProperties": false
       },
-      "RoleDto": {
+      "RoleDTO": {
         "type": "object",
         "properties": {
           "id": {
@@ -2895,7 +2895,7 @@
         },
         "additionalProperties": false
       },
-      "RoleDtoPageResult": {
+      "RoleDTOPageResult": {
         "type": "object",
         "properties": {
           "currentPage": {
@@ -2931,14 +2931,14 @@
           "results": {
             "type": "array",
             "items": {
-              "$ref": "#/components/schemas/RoleDto"
+              "$ref": "#/components/schemas/RoleDTO"
             },
             "nullable": true
           }
         },
         "additionalProperties": false
       },
-      "RoyaltyReportByMonthDto": {
+      "RoyaltyReportByMonthDTO": {
         "type": "object",
         "properties": {
           "month": {
@@ -2976,7 +2976,7 @@
         },
         "additionalProperties": false
       },
-      "RoyaltyReportByUserDto": {
+      "RoyaltyReportByUserDTO": {
         "required": [
           "userName"
         ],

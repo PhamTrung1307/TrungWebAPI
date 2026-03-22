@@ -283,7 +283,7 @@
   },
   {
     "ContainingType": "API.Controllers.AdminAPI.PostController",
-    "Method": "SendToApprove",
+    "Method": "SenDTOApprove",
     "RelativePath": "api/admin/post/approval-submit/{id}",
     "HttpMethod": "GET",
     "IsController": true,
@@ -542,7 +542,7 @@
     ],
     "ReturnTypes": [
       {
-        "Type": "Core.Models.Systems.RoleDto",
+        "Type": "Core.Models.Systems.RoleDTO",
         "MediaTypes": [
           "text/plain",
           "application/json",
@@ -588,7 +588,7 @@
     "Parameters": [],
     "ReturnTypes": [
       {
-        "Type": "System.Collections.Generic.List\u00601[[Core.Models.Systems.RoleDto, Core, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]",
+        "Type": "System.Collections.Generic.List\u00601[[Core.Models.Systems.RoleDTO, Core, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]",
         "MediaTypes": [
           "text/plain",
           "application/json",
@@ -624,7 +624,7 @@
     ],
     "ReturnTypes": [
       {
-        "Type": "Core.Models.PageResult\u00601[[Core.Models.Systems.RoleDto, Core, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]",
+        "Type": "Core.Models.PageResult\u00601[[Core.Models.Systems.RoleDTO, Core, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]",
         "MediaTypes": [
           "text/plain",
           "application/json",
@@ -702,7 +702,7 @@
     ],
     "ReturnTypes": [
       {
-        "Type": "System.Collections.Generic.List\u00601[[Core.Domain.Royalty.RoyaltyReportByMonthDto, Core, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]",
+        "Type": "System.Collections.Generic.List\u00601[[Core.Domain.Royalty.RoyaltyReportByMonthDTO, Core, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]",
         "MediaTypes": [
           "text/plain",
           "application/json",
@@ -748,7 +748,7 @@
     ],
     "ReturnTypes": [
       {
-        "Type": "System.Collections.Generic.List\u00601[[Core.Domain.Royalty.RoyaltyReportByUserDto, Core, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]",
+        "Type": "System.Collections.Generic.List\u00601[[Core.Domain.Royalty.RoyaltyReportByUserDTO, Core, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]",
         "MediaTypes": [
           "text/plain",
           "application/json",

@@ -1,4 +1,5 @@
 ﻿using System.ComponentModel.DataAnnotations;
+using WebApp.Extensions;
 
 namespace WebApp.Models
 {
@@ -11,7 +12,7 @@ namespace WebApp.Models
         public required string NewPassword { get; set; }
 
         [Required(ErrorMessage = "Confirm new password required")]
-    //    [PasswordMatch("NewPassword", ErrorMessage = "Confirm password is not matched")]
+        [PasswordMatch("NewPassword", ErrorMessage = "Confirm password is not matched")]
         public required string ConfirmPassword { get; set; }
     }
 }

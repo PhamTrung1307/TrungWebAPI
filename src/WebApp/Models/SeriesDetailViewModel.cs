@@ -1,7 +1,7 @@
 ﻿using Core.Models;
 using Core.Models.Content;
 
-namespace TeduBlog.WebApp.Models
+namespace WebApp.Models
 {
     public class SeriesDetailViewModel
     {

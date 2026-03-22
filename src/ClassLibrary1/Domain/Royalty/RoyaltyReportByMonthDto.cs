@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Core.Domain.Royalty
 {
-    public class RoyaltyReportByMonthDto
+    public class RoyaltyReportByMonthDTO
     {
         public int Month { get; set; }
         public int Year { get; set; }

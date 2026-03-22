@@ -163,7 +163,7 @@ namespace Data.Repositories
             return await _mapper.ProjectTo<PostActivityLogDTO>(query).ToListAsync();
         }
 
-        public async Task SendToApprove(Guid id, Guid currentUserId)
+        public async Task SenDTOApprove(Guid id, Guid currentUserId)
         {
             var post = await _context.Posts.FindAsync(id);
             if (post == null)
@@ -262,5 +262,66 @@ namespace Data.Repositories
             return await query.ToListAsync();
         }
 
+        public async Task<PageResult<PostInListDTO>> GetPostByTagPaging(string tagSlug, int pageIndex = 1, int pageSize = 10)
+        {
+            var query = from p in _context.Posts
+                        join pt in _context.PostTags on p.Id equals pt.PostId
+                        join t in _context.Tags on pt.TagId equals t.Id
+                        where t.Slug == tagSlug
+                        select p;
+
+            var totalRow = await query.CountAsync();
+
+            query = query.OrderByDescending(x => x.DateCreated)
+               .Skip((pageIndex - 1) * pageSize)
+               .Take(pageSize);
+
+            return new PageResult<PostInListDTO>
+            {
+                Results = await _mapper.ProjectTo<PostInListDTO>(query).ToListAsync(),
+                CurrentPage = pageIndex,
+                RowCount = totalRow,
+                PageSize = pageSize
+            };
+
+        }
+
+        public async Task<List<TagDTO>> GetTagObjectsByPostId(Guid postId)
+        {
+            var query = from p in _context.Posts
+                        join pt in _context.PostTags on p.Id equals pt.PostId
+                        join t in _context.Tags on pt.TagId equals t.Id
+                        where pt.PostId == postId
+                        select t;
+
+            var totalRow = await query.CountAsync();
+
+            return await _mapper.ProjectTo<TagDTO>(query).ToListAsync();
+        }
+
+        public async Task<PageResult<PostInListDTO>> GetPostByUserPaging(string keyword, Guid userId, int pageIndex = 1, int pageSize = 10)
+        {
+
+            var query = _context.Posts.Where(x => x.AuthorUserID == userId)
+                .AsQueryable();
+            if (!string.IsNullOrWhiteSpace(keyword))
+            {
+                query = query.Where(x => x.Name.Contains(keyword));
+            }
+
+            var totalRow = await query.CountAsync();
+
+            query = query.OrderByDescending(x => x.DateCreated)
+               .Skip((pageIndex - 1) * pageSize)
+               .Take(pageSize);
+
+            return new PageResult<PostInListDTO>
+            {
+                Results = await _mapper.ProjectTo<PostInListDTO>(query).ToListAsync(),
+                CurrentPage = pageIndex,
+                RowCount = totalRow,
+                PageSize = pageSize
+            };
+        }
     }
 }

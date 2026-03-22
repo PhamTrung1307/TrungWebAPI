@@ -1,7 +1,7 @@
 ﻿using System.ComponentModel.DataAnnotations;
 using System.ComponentModel;
 
-namespace TeduBlog.WebApp.Models
+namespace WebApp.Models
 {
     public class ChangeProfileViewModel
     {

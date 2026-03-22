@@ -37,7 +37,7 @@ namespace API.Controllers.AdminAPI
         [HttpGet]
         [Route("Royalty-report-by-user")]
         [Authorize(Royalty.View)]
-        public async Task<ActionResult<List<RoyaltyReportByUserDto>>> GetRoyaltyReportByUser(Guid? userId,
+        public async Task<ActionResult<List<RoyaltyReportByUserDTO>>> GetRoyaltyReportByUser(Guid? userId,
           int fromMonth, int fromYear, int toMonth, int toYear)
         {
             var result = await _royaltyService.GetRoyaltyReportByUserAsync(userId, fromMonth, fromYear, toMonth, toYear);
@@ -47,7 +47,7 @@ namespace API.Controllers.AdminAPI
         [HttpGet]
         [Route("Royalty-report-by-month")]
         [Authorize(Royalty.View)]
-        public async Task<ActionResult<List<RoyaltyReportByMonthDto>>> GetRoyaltyReportByMonth(Guid? userId,
+        public async Task<ActionResult<List<RoyaltyReportByMonthDTO>>> GetRoyaltyReportByMonth(Guid? userId,
          int fromMonth, int fromYear, int toMonth, int toYear)
         {
             var result = await _royaltyService.GetRoyaltyReportByMonthAsync(userId, fromMonth, fromYear, toMonth, toYear);

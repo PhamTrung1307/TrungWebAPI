@@ -75,19 +75,19 @@ namespace API.Controllers.AdminAPI
 
         [HttpGet("{id}")]
         [Authorize(Permissions.Roles.View)]
-        public async Task<ActionResult<RoleDto>> GetRoleById(Guid id)
+        public async Task<ActionResult<RoleDTO>> GetRoleById(Guid id)
         {
             var role = await _roleManager.FindByIdAsync(id.ToString());
             if (role == null)
                 return NotFound();
 
-            return Ok(_mapper.Map<AppRole, RoleDto>(role));
+            return Ok(_mapper.Map<AppRole, RoleDTO>(role));
         }
 
         [HttpGet]
         [Route("paging")]
         [Authorize(Permissions.Roles.View)]
-        public async Task<ActionResult<PageResult<RoleDto>>> GetRolesAllPaging(string? keyword, int pageIndex = 1, int pageSize = 10)
+        public async Task<ActionResult<PageResult<RoleDTO>>> GetRolesAllPaging(string? keyword, int pageIndex = 1, int pageSize = 10)
         {
             var query = _roleManager.Roles;
             if (!string.IsNullOrEmpty(keyword))
@@ -98,8 +98,8 @@ namespace API.Controllers.AdminAPI
             query = query.Skip((pageIndex - 1) * pageSize)
                 .Take(pageSize);
 
-            var data = await _mapper.ProjectTo<RoleDto>(query).ToListAsync();
-            var paginationSet = new PageResult<RoleDto>
+            var data = await _mapper.ProjectTo<RoleDTO>(query).ToListAsync();
+            var paginationSet = new PageResult<RoleDTO>
             {
                 Results = data,
                 CurrentPage = pageIndex,
@@ -112,9 +112,9 @@ namespace API.Controllers.AdminAPI
 
         [HttpGet("all")]
         [Authorize(Permissions.Roles.View)]
-        public async Task<ActionResult<List<RoleDto>>> GetAllRoles()
+        public async Task<ActionResult<List<RoleDTO>>> GetAllRoles()
         {
-            var model = await _mapper.ProjectTo<RoleDto>(_roleManager.Roles).ToListAsync();
+            var model = await _mapper.ProjectTo<RoleDTO>(_roleManager.Roles).ToListAsync();
             return Ok(model);
         }
 
